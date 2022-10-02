@@ -17,6 +17,8 @@ function App() {
   
   const checkLetter = (letter: string) => {
     console.log(letter);
+    // if letter is not in word, increase attempts
+    setAttempts( attempts + 1)
   };
 
   return (
@@ -30,7 +32,7 @@ function App() {
       <h3>-------------</h3>
 
       {/* attempts counter */}
-      <h3>`Attempts: ${attempts}`</h3>
+      <h3>Attempts: {attempts}</h3>
 
       {/* letter buttons */}
       <Keyboard setLetter={setLetter} />
