@@ -7,18 +7,20 @@ import './App.css'
 
 function App() {
   
+  const [attempts, setAttempts] = useState(0);
+
   return (
     <div className="App">
       <h2> Hangman </h2>
 
       {/* game images */}
-      <HangImage imgNumber={ 9 } />
+      <HangImage imgNumber={ attempts } />
 
       {/* hidden word */}
       <h3>-------------</h3>
 
-      {/* tries counter */}
-      <h3>Tries: 0</h3>
+      {/* attempts counter */}
+      <h3>`Attempts: ${attempts}`</h3>
 
       {/* letter buttons */}
       <Keyboard />
