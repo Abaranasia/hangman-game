@@ -5,16 +5,13 @@
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.keyboard {
+  background-color: rgb(170, 169, 169);
+  border-radius: 8px;
+  box-sizing: border-box;
+  margin: 0px auto;
+  padding: 5px;
+  width: 50%;
 }
 
 @keyframes logo-spin {
