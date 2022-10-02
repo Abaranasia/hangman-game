@@ -26,10 +26,13 @@ const images: string[] = [
 interface Props {
   imgNumber: number;
 }
-export const HangImage = ( props:Props ) => {
+export const HangImage = ( { imgNumber }:Props ) => {
+
+  if (imgNumber >= 9) imgNumber = 9;
+
   return (
     <div>
-      <img src={images[9]} alt='Hang image' style={{ width: '250px' }} />
+      <img src={images[imgNumber]} alt='Hang image' style={{ width: '250px' }} />
     </div>
   );
 };
