@@ -30,6 +30,7 @@ function App() {
       if (currentHiddenWord === word &&  attempts< 9) setWon(true)
   }, [hiddenWord]);
 
+
   const checkLetter = (letter: string) => {
     if (lose || won) return;
 
@@ -51,11 +52,12 @@ function App() {
     setHiddenWord( hiddenWordArray.join(' '))
   };
 
+  
   const newGame = () => {
+    const newWord= getRandomWord();
+    setWord(newWord);
+    setHiddenWord('_ '.repeat(newWord.length))
     setAttempts(0)
-    setNewLetter('')
-    setWord(getRandomWord())
-    setHiddenWord('_ '.repeat(word.length))
     setLose(false)
     setWon(false)
   };
