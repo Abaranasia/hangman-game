@@ -4,6 +4,34 @@
   padding: 2rem;
   text-align: center;
 }
+.App{
+  
+}
+.result {
+  position: absolute;
+  top: 50vh;
+  left: 35vw;
+  margin: 0 auto;
+  width: 400px;
+  height: 200px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.result h2 {
+  color: white;
+  font-size: 4rem;
+}
+.lose {
+  background: rgb(255, 48, 48);
+}
+
+.win {
+  background: rgb(26, 197, 26);
+}
+
 
 .keyboard {
   background-color: rgb(170, 169, 169);

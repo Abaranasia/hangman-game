@@ -8,14 +8,21 @@ import './App.css'
 function App() {
   
   const [attempts, setAttempts] = useState(0);
+  const [newLetter, setNewLetter] = useState('');
   const [word, setWord] = useState('COMPUTADORA');
   const [hiddenWord, setHiddenWord] = useState('_ '.repeat(word.length));
-  const [newLetter, setNewLetter] = useState('');
+  const [lose, setLose] = useState(true);
+  const [win, setWin] = useState(false);
 
   useEffect(() => {
     checkLetter(newLetter)
   }, [newLetter])
   
+  
+  useEffect(() => {
+    if (attempts >= 9) setLose(true)
+  }, [attempts])
+
   const checkLetter = (letter: string) => {
     console.log(letter);
     // if letter is not in word, increase attempts
@@ -42,6 +49,19 @@ function App() {
     <div className="App">
       <h2> Hangman </h2>
 
+      {lose && 
+        <div className='result lose'>
+          <h2>PERDISTE</h2>
+          Fallaste la palabra {word}
+        </div>
+      }
+      {win &&  
+        <div className='result win'>
+          <h2>GANASTE</h2>
+          Acertaste la palabra {word}
+        </div>
+      }
+
       {/* game images */}
       <HangImage imgNumber={ attempts } />
 
@@ -53,6 +73,9 @@ function App() {
 
       {/* letter buttons */}
       <Keyboard setLetter={setNewLetter} />
+
+      
+
     </div>
   )
 }
