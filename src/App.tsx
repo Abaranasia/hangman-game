@@ -3,9 +3,9 @@ import { useState, useEffect } from 'react'
 import { HangImage } from './components/HangImage'
 import { Keyboard } from './components/Keyboard'
 import { getRandomWord } from './helpers/getRandomWord';
+import { DisplayResult } from './components/DisplayResult';
 
 import './App.css'
-import { DisplayResult } from './components/DisplayResult';
 
 function App() {
   
