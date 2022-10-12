@@ -5,6 +5,7 @@ import { Keyboard } from './components/Keyboard'
 import { getRandomWord } from './helpers/getRandomWord';
 
 import './App.css'
+import { DisplayResult } from './components/DisplayResult';
 
 function App() {
   
@@ -19,7 +20,6 @@ function App() {
     checkLetter(newLetter)
   }, [newLetter])
   
-  
   useEffect(() => {
     if (attempts >= 9) setLose(true)
   }, [attempts]);
@@ -31,7 +31,7 @@ function App() {
   }, [hiddenWord]);
 
   const checkLetter = (letter: string) => {
-    if (lose) return;
+    if (lose || won) return;
 
     if (!word.includes(letter)) {
       setAttempts( Math.min( attempts + 1, 9 ) );
@@ -49,24 +49,28 @@ function App() {
       };
     };
     setHiddenWord( hiddenWordArray.join(' '))
+  };
 
+  const newGame = () => {
+    setAttempts(0)
+    setNewLetter('')
+    setWord(getRandomWord())
+    setHiddenWord('_ '.repeat(word.length))
+    setLose(false)
+    setWon(false)
   };
 
   return (
     <div className="App">
-      <h2> Hangman </h2>
+      <h1> Hangman </h1>
 
-      {lose && 
-        <div className='result lose'>
-          <h2>PERDISTE</h2>
-          Fallaste la palabra {word}
-        </div>
-      }
-      {won &&  
-        <div className='result won'>
-          <h2>GANASTE</h2>
-          Acertaste la palabra {word}
-        </div>
+      {/* display result */}
+      {(lose || won) && 
+        <DisplayResult 
+          resultValue= {(won) ?'won': 'lose'}
+          word={word}
+          newGame={newGame}
+        />
       }
 
       {/* game images */}
@@ -79,10 +83,7 @@ function App() {
       <h3>Attempts: {attempts}</h3>
 
       {/* letter buttons */}
-      <Keyboard setLetter={setNewLetter} />
-
-      
-
+      <Keyboard setLetter={setNewLetter} />    
     </div>
   )
 }
