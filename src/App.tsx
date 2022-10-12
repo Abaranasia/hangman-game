@@ -9,11 +9,11 @@ function App() {
   
   const [attempts, setAttempts] = useState(0);
   const [newLetter, setNewLetter] = useState('');
-  const [word, setWord] = useState('COMPUTADORA');
+  const [word, setWord] = useState('');
   const [hiddenWord, setHiddenWord] = useState('_ '.repeat(word.length));
-  const [lose, setLose] = useState(true);
-  const [win, setWin] = useState(false);
-
+  const [lose, setLose] = useState(false);
+  const [won, setWon] = useState(false);
+  
   useEffect(() => {
     checkLetter(newLetter)
   }, [newLetter])
@@ -21,16 +21,22 @@ function App() {
   
   useEffect(() => {
     if (attempts >= 9) setLose(true)
-  }, [attempts])
+  }, [attempts]);
+
+  useEffect(() => {
+    if (!hiddenWord) return
+    const currentHiddenWord= hiddenWord.replace(/\s/g, '')
+      if (currentHiddenWord === word &&  attempts< 9) setWon(true)
+  }, [hiddenWord]);
 
   const checkLetter = (letter: string) => {
-    console.log(letter);
-    // if letter is not in word, increase attempts
+    if (lose) return;
 
     if (!word.includes(letter)) {
       setAttempts( Math.min( attempts + 1, 9 ) );
       return
     };
+
     // Here the word will include the letter
     // To know the position of the letter we will loop the world 
     // and replace the spaces in hiddenWorld by the letter in these positions
@@ -55,8 +61,8 @@ function App() {
           Fallaste la palabra {word}
         </div>
       }
-      {win &&  
-        <div className='result win'>
+      {won &&  
+        <div className='result won'>
           <h2>GANASTE</h2>
           Acertaste la palabra {word}
         </div>
