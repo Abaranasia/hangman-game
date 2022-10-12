@@ -9,7 +9,7 @@
 }
 .result {
   position: absolute;
-  top: 50vh;
+  top: 30vh;
   left: 35vw;
   margin: 0 auto;
   width: 400px;
@@ -28,7 +28,7 @@
   background: rgb(255, 48, 48);
 }
 
-.win {
+.won {
   background: rgb(26, 197, 26);
 }
 
