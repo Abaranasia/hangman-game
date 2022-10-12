@@ -8,17 +8,34 @@ import './App.css'
 function App() {
   
   const [attempts, setAttempts] = useState(0);
-  const [letter, setLetter] = useState('');
+  const [word, setWord] = useState('COMPUTADORA');
+  const [hiddenWord, setHiddenWord] = useState('_ '.repeat(word.length));
+  const [newLetter, setNewLetter] = useState('');
 
   useEffect(() => {
-    checkLetter(letter)
-
-  }, [letter])
+    checkLetter(newLetter)
+  }, [newLetter])
   
   const checkLetter = (letter: string) => {
     console.log(letter);
     // if letter is not in word, increase attempts
-    setAttempts( attempts + 1)
+
+    if (!word.includes(letter)) {
+      setAttempts( Math.min( attempts + 1, 9 ) );
+      return
+    };
+    // Here the word will include the letter
+    // To know the position of the letter we will loop the world 
+    // and replace the spaces in hiddenWorld by the letter in these positions
+    const hiddenWordArray = hiddenWord.split(' ');
+
+    for (let i = 0; i < word.length; i++) {
+      if (word[i] === letter) {
+        hiddenWordArray[i] = letter
+      };
+    };
+    setHiddenWord( hiddenWordArray.join(' '))
+
   };
 
   return (
@@ -29,13 +46,13 @@ function App() {
       <HangImage imgNumber={ attempts } />
 
       {/* hidden word */}
-      <h3>-------------</h3>
+      <h3>{hiddenWord}</h3>
 
       {/* attempts counter */}
       <h3>Attempts: {attempts}</h3>
 
       {/* letter buttons */}
-      <Keyboard setLetter={setLetter} />
+      <Keyboard setLetter={setNewLetter} />
     </div>
   )
 }
