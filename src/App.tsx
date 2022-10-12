@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 
 import { HangImage } from './components/HangImage'
 import { Keyboard } from './components/Keyboard'
+import { getRandomWord } from './helpers/getRandomWord';
 
 import './App.css'
 
@@ -9,7 +10,7 @@ function App() {
   
   const [attempts, setAttempts] = useState(0);
   const [newLetter, setNewLetter] = useState('');
-  const [word, setWord] = useState('');
+  const [word, setWord] = useState(getRandomWord());
   const [hiddenWord, setHiddenWord] = useState('_ '.repeat(word.length));
   const [lose, setLose] = useState(false);
   const [won, setWon] = useState(false);
