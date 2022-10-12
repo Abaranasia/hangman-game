@@ -13,7 +13,7 @@
   left: 35vw;
   margin: 0 auto;
   width: 400px;
-  height: 200px;
+  height: 225px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   font-size: 1.2rem;
@@ -22,7 +22,7 @@
 
 .result h2 {
   color: white;
-  font-size: 4rem;
+  font-size: 3rem;
 }
 .lose {
   background: rgb(255, 48, 48);
